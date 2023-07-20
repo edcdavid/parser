@@ -31,4 +31,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions-hub/stylelint@master
         env:
-        PATTERN: "html/*.css"
+          PATTERN: "html/*.css"

@@ -1,4 +1,4 @@
-classification=  {
+var classification =  {
   "access-control-cluster-role-bindings": {
     "Extended": "Mandatory",
     "FarEdge": "Mandatory",

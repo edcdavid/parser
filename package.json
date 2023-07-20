@@ -1,8 +1,0 @@
-{
-  "name": "parser",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:test-network-function/parser.git",
-  "author": "David Elie-Dit-Cosaque <deliedit@redhat.com>",
-  "license": "MIT"
-}

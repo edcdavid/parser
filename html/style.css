@@ -60,7 +60,6 @@
     }
 
     ul li a {
-      background-color: #eee;
       border-radius: 50%;
       color: #000;
       display: inline-block;
@@ -73,12 +72,20 @@
       width: 1.5em;
     }
 
-    ul li a.plus {
-      background-color: #77aeff;
+    svg {
+      pointer-events: none;
     }
 
     ul li a.minus {
-      background-color: #eee;
+      animation-name: anim-minus;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes anim-minus {
+      to {
+        transform: rotate(90deg);
+      }
     }
 
     ul li a:active {
@@ -105,4 +112,3 @@
       width: 25px;
       height: 25px;
     }
-    

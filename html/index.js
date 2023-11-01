@@ -899,6 +899,7 @@ function hasChildren (data, parentId) {
 // Gets children items
 function getChildren (data, parentId) {
   return data.filter(function (item) {
+    //console.log('parent= ',item.parent," parentid= ", parentId)
     return item.parent === parentId
   })
 }
@@ -910,14 +911,16 @@ function generateListItem (data, item) {
   if (hasChildren(data, item.id)) {
     const a = document.createElement('a')
     a.href = '#'
-    a.textContent = '+'
-    a.classList.add('plus')
+    a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16" part="svg"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path></svg>`
     a.title = 'hold shift to expand sub tree'
     a.addEventListener('click', expand.bind(null, data), { once: true })
+    a.classList.add('plus')
     li.appendChild(a)
+    console.log( a)
   }
   const span = document.createElement('span')
   span.textContent = item.name
+  console.log(item.name)
   li.appendChild(span)
   return li
 }
@@ -930,15 +933,19 @@ function expand (data, event) {
   const parent = et.parentElement
   const id = parent.id.replace('item-', '')
   const kids = getChildren(data, id)
+  //console.log(kids)
   const items = kids.map(generateListItem.bind(null, data))
   const ul = document.createElement('ul')
+  //console.log(data)
   items.forEach(function (li) {
     ul.appendChild(li)
   })
   parent.appendChild(ul)
   et.classList.remove('plus')
   et.classList.add('minus')
-  et.textContent = '-'
+  et.innerHTML = `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16" part="svg">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+</svg>`
   et.addEventListener('click', collapse.bind(null, data), { once: true })
 
   if (event.shiftKey) {
@@ -959,7 +966,6 @@ function collapse (data, event) {
   parent.removeChild(ul)
   et.classList.remove('minus')
   et.classList.add('plus')
-  et.textContent = '+'
   et.addEventListener('click', expand.bind(null, data), { once: true })
 }
 
